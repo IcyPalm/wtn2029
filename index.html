@@ -30,13 +30,16 @@
         body {
             /* Retro night-sky gradient taken from the WHY2025 hero */
             background: radial-gradient(ellipse at 50% -30%, #000014 0%, #1a0050 40%, #26006d 60%, #7f007d 75%, #ff6300 100%);
+            background-attachment: fixed;
 
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            font-family: "Beon", sans-serif;
-            overflow: hidden;
+            font-family: "Beon", Arial, Helvetica, sans-serif;
+            overflow-x: hidden; /* Only hide horizontal overflow, allow vertical scrolling */
+            min-height: 100vh; /* Ensure full height on mobile */
+            padding: 1rem 0; /* Add vertical padding */
         }
 
         /* Starfield dots (pure CSS, cheap substitute for the WHY2025 canvas) */
@@ -50,17 +53,18 @@
 
 
 
-        /* Logo placement - increased size as requested */
+        /* Logo placement - responsive sizing */
         .logo {
-            width: clamp(200px, 40vmin, 400px);
-            margin-bottom: 2rem;
+            width: clamp(150px, 40vmin, 400px);
+            margin-bottom: 1.5rem;
+            max-width: 90%;
         }
 
         /* Heading styled with neon effect but sharper text */
         h2 {
-            font-size: 96px;
+            font-size: clamp(40px, 10vw, 96px);
             font-weight: 500;
-            line-height: 144px;
+            line-height: 1.2;
             text-align: center;
             /* Add solid color to text instead of transparent */
             color: rgb(255, 251, 150);
@@ -70,11 +74,15 @@
                 0 0 10px rgba(255, 251, 150, 0.5);
             /* Keep the flicker animation for dynamic effect */
             animation: flicker 3s infinite;
+            padding: 0 10px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            margin-bottom: 1rem;
         }
         h3 {
-            font-size: 72px;
+            font-size: clamp(30px, 8vw, 72px);
             font-weight: 500;
-            line-height: 144px;
+            line-height: 1.2;
             text-align: center;
             /* Add solid color to text instead of transparent */
             color: rgb(242, 94, 149);
@@ -84,6 +92,9 @@
                 0 0 10px rgb(133, 34, 73);
             /* Keep the flicker animation for dynamic effect */
             /*animation: flicker 3s infinite;*/
+            padding: 0 10px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
 
@@ -93,6 +104,34 @@
             }
             20%, 24%, 55% {
                 opacity: 0.5;
+            }
+        }
+        
+        /* Media queries for better mobile responsiveness */
+        @media screen and (max-width: 480px) {
+            body {
+                padding: 1rem;
+            }
+            
+            h2 {
+                font-size: clamp(32px, 8vw, 40px);
+                text-shadow: 
+                    0 0 3px rgba(255, 251, 150, 0.8),
+                    0 0 6px rgba(255, 251, 150, 0.5);
+            }
+            
+            h3 {
+                font-size: clamp(24px, 6vw, 30px);
+                text-shadow:
+                    0 0 3px rgb(198, 80, 126),
+                    0 0 6px rgb(133, 34, 73);
+            }
+        }
+        
+        @media screen and (max-height: 600px) {
+            .logo {
+                width: clamp(100px, 25vmin, 200px);
+                margin-bottom: 1rem;
             }
         }
     </style>
