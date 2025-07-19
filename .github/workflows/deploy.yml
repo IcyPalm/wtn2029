@@ -1,0 +1,35 @@
+name: Deploy Static Site to VPS
+
+on:
+  push:
+    branches: [ "main" ]  # or whichever branch you want to deploy from
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+
+      - name: Deploy with rsync
+        uses: burnett01/rsync-deployments@7.0.2
+        with:
+          # The source directory in your local repo (the repository root)
+          path: './'
+          # Remote directory on your VPS where you want to place the files
+          remote_path: '/var/www/wtn2029.org/'
+          # The host/ip of your VPS
+          remote_host: ${{ secrets.VPS_HOST }}
+          # The username you created for deployments
+          remote_user: ${{ secrets.VPS_USERNAME }}
+          # SSH private key (stored in GitHub Secrets)
+          remote_key: ${{ secrets.VPS_PRIVATE_KEY }}
+          # Additional rsync switches:
+          #  -a = archive mode (preserve permissions, etc.)
+          #  -z = compress file data
+          #  -v = verbose
+          #  --delete = remove extra files on the destination that aren't in the source
+          #  --exclude=".*" = ignore dotfiles
+          switches: '-azv --delete --exclude=".*"'

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Whatever The Name</title>
+
+    <!-- Beon Font (neon-style) -->
+    <link href="https://fonts.cdnfonts.com/css/beon" rel="stylesheet" />
+
+    <style>
+        :root {
+            /* Neon colours inspired by the WHY2025 heading */
+            --neon-cyan: #00eaff;
+            --neon-pink: #ff6bf9;
+            --neon-yellow: #fff960;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            /* Retro night-sky gradient taken from the WHY2025 hero */
+            background: radial-gradient(ellipse at 50% -30%, #000014 0%, #1a0050 40%, #26006d 60%, #7f007d 75%, #ff6300 100%);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-family: "Beon", sans-serif;
+            overflow: hidden;
+        }
+
+        /* Starfield dots (pure CSS, cheap substitute for the WHY2025 canvas) */
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: 0.15;
+        }
+
+
+
+
+        /* Logo placement - increased size as requested */
+        .logo {
+            width: clamp(200px, 40vmin, 400px);
+            margin-bottom: 2rem;
+        }
+
+        /* Heading styled with neon effect but sharper text */
+        h2 {
+            font-size: 96px;
+            font-weight: 500;
+            line-height: 144px;
+            text-align: center;
+            /* Add solid color to text instead of transparent */
+            color: rgb(255, 251, 150);
+            /* Adjusted shadow for sharper text while maintaining glow */
+            text-shadow: 
+                0 0 5px rgba(255, 251, 150, 0.8),
+                0 0 10px rgba(255, 251, 150, 0.5);
+            /* Keep the flicker animation for dynamic effect */
+            animation: flicker 3s infinite;
+        }
+        h3 {
+            font-size: 72px;
+            font-weight: 500;
+            line-height: 144px;
+            text-align: center;
+            /* Add solid color to text instead of transparent */
+            color: rgb(242, 94, 149);
+            /* Adjusted shadow for sharper text while maintaining glow */
+            text-shadow:
+                0 0 5px rgb(198, 80, 126),
+                0 0 10px rgb(133, 34, 73);
+            /* Keep the flicker animation for dynamic effect */
+            /*animation: flicker 3s infinite;*/
+        }
+
+
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+<body>
+<img src="WTN2029.png" alt="Logo" class="logo" />
+<h2>Whatever The Name</h2>
+<h3>Coming to you in 2029</h3>
+</body>
+</html>
